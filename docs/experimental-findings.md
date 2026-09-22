@@ -9,6 +9,10 @@ Experimental Findings |
 
 ## Implementations
 
+- [Exploratory external Host and model observations](findings/external-host-smoke-tests.md)
+  separates flat compatibility, exact-name deferred loading and custom Host activation,
+  with explicit sample sizes and evidence limits.
+
 - [Deterministic domain manifests in Apache Doris MCP Server](findings/doris-domain-manifests.md)
   describes a public server implementation's bounded, deterministic alternative
   to eager exposure of 55 tool schemas, including measurements, limitations, and
