@@ -25,6 +25,11 @@ serialization vectors and an asynchronous adapter interface for other server
 implementations. It separately lists unimplemented integration gates and includes
 negative controls for the test harness itself.
 
+The [SDK stdio bridge](../../sdk/typescript/experiments/grouping/README.md)
+runs the same portable contract through real SDK Client/Server instances in
+separate processes and tests change notification delivery. It reuses the reference
+business logic and is not a second independent implementation.
+
 ## Proposed contract
 
 The words below describe this experiment, not requirements on existing MCP hosts.

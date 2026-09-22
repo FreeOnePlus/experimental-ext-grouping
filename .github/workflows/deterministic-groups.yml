@@ -19,3 +19,6 @@ jobs:
       - run: node --test experiments/deterministic-groups/reference.test.mjs
       - run: node --test experiments/deterministic-groups/conformance/suite.test.mjs
       - run: node experiments/deterministic-groups/conformance/run.mjs
+      - run: npm ci
+        working-directory: sdk/typescript
+      - run: node --test sdk/typescript/experiments/grouping/transport.checks.mjs

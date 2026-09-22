@@ -27,7 +27,7 @@
     {
       "id": "notification-delivery",
       "gate": "SDK integration",
-      "reason": "Only explicit local invalidation is modeled today."
+      "reason": "SDK stdio delivery is tested after a fixture update and ping barrier; unsolicited changes and native Host eviction remain unverified."
     },
     {
       "id": "ttl-expiry",
