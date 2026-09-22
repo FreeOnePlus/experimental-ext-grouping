@@ -7,6 +7,7 @@ From the repository root:
 ```sh
 npm ci --prefix sdk/typescript
 node --test sdk/typescript/experiments/grouping/transport.checks.mjs
+node --test sdk/typescript/experiments/grouping/host.checks.mjs
 node experiments/deterministic-groups/conformance/run.mjs sdk/typescript/experiments/grouping/adapter.mjs
 ```
 
@@ -23,6 +24,19 @@ restores the harness ID on return. Therefore the portable envelope-ID assertions
 Draft methods are registered with explicit experimental request schemas. Standard `tools/list` and `tools/call` retain their names. No change is made to an installed SDK dependency, and unknown capabilities are not assumed to be stable protocol.
 
 ## Fixture control and notification scope
+
+### Draft capability compatibility
+
+SDK 1.27.1 filters unknown fields inside negotiated `tools` capabilities, including draft `tools.manifest`. Earlier direct-method server checks did not detect a Host falling back to `tools/list`. The asynchronous Host checks exposed this gap. The bridge now advertises
+`experimental["experimental/deterministic-groups"] = {version: 1, manifest: true}`. The Host requires version 1 and either this explicit experimental opt-in or preserved `tools.manifest: true`. Otherwise it uses the legacy path. No dependency is patched; this is not native SDK
+support for SEP-2636.
+
+### Asynchronous Host lifecycle
+
+`host.mjs` implements selective discovery, digest/size/membership verification, atomic registration and original-name invocation. A generation counter prevents late responses from restoring registrations after notifications, disconnects or newer activations. Five Host tests
+exercise selection, switching, eviction, late-response races and legacy fallback over stdio. The provider-shaped registry remains in memory: no external model API or production Host has accepted it. Clearing this registry cannot recall already submitted provider requests.
+
+### Test fixture updates
 
 Each adapter owns a fresh temporary directory and a mode-0600 JSON fixture file. The child reads this test-only file; atomic replacement changes fixture state or the authorized session view out of band. No MCP method accepts fixture mutations or authentication identities. These
 are synthetic permissions, not production authentication or OAuth.

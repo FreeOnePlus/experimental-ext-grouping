@@ -11,6 +11,9 @@ let state = JSON.parse(await readFile(path, 'utf8'));
 const model = new Server(state.fixture, state.options);
 const session = { allowed: new Set(state.allowed) };
 const capabilities = model.dispatch(session, 'initialize', {}).capabilities;
+// SDK 1.27.1 strips the draft tools.manifest field on the client. Negotiate
+// this bridge explicitly through experimental metadata, never infer support.
+if (model.grouping) capabilities.experimental['experimental/deterministic-groups'].manifest = true;
 capabilities.tools.listChanged = true;
 const server = new MCPServer({ name: 'grouping-test-bridge', version: '0.0.1' }, { capabilities });
 let initialized = false;

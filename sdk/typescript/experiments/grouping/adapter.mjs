@@ -20,8 +20,14 @@ export async function createAdapter({ fixture, allowed, options = {} }) {
     });
     const client = new Client({ name: 'grouping-test-host', version: '0.0.1' });
     const notifications = [];
+    const invalidationListeners = new Set();
+    const invalidate = () => {
+        for (const listener of invalidationListeners) listener();
+    };
+    client.onclose = invalidate;
     client.setNotificationHandler(ToolListChangedNotificationSchema, notification => {
         notifications.push(notification);
+        invalidate();
     });
     // Drain stderr without treating it as protocol traffic.
     let stderr = '';
@@ -51,6 +57,10 @@ export async function createAdapter({ fixture, allowed, options = {} }) {
         notifications,
         pid: transport.pid,
         serverInfo: client.getServerVersion(),
+        onInvalidated(listener) {
+            invalidationListeners.add(listener);
+            return () => invalidationListeners.delete(listener);
+        },
         async request(request) {
             try {
                 // connect() already performed the real SDK handshake. Never initialize twice.

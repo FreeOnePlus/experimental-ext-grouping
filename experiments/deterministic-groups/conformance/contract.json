@@ -27,7 +27,7 @@
     {
       "id": "notification-delivery",
       "gate": "SDK integration",
-      "reason": "SDK stdio delivery is tested after a fixture update and ping barrier; unsolicited changes and native Host eviction remain unverified."
+      "reason": "SDK stdio delivery and Host-local eviction are tested after a fixture update and ping barrier; unsolicited changes and external provider eviction remain unverified."
     },
     {
       "id": "ttl-expiry",

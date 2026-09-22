@@ -22,3 +22,4 @@ jobs:
       - run: npm ci
         working-directory: sdk/typescript
       - run: node --test sdk/typescript/experiments/grouping/transport.checks.mjs
+      - run: node --test sdk/typescript/experiments/grouping/host.checks.mjs
