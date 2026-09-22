@@ -5,12 +5,12 @@ fixture at `c3fa2a9475bc9dd47ae19643b48d9b0a24f5a43d`. They illustrate different
 acquisition and activation paths; they are not a comprehensive client survey,
 official conformance certification or a comparative model benchmark.
 
-| Configuration | Observed acquisition/activation | Outcome |
-| --- | --- | --- |
-| Kimi CLI 2.0.2, default | `tools/list`, followed by three `tools/call` requests | All three returned fixture acknowledgments |
-| Kimi CLI 2.0.2, deferred enabled | `tools/list`; model called built-in `select_tools` with exact names, then three MCP calls | Exact-name deferred loading and calls completed |
-| Codex CLI 0.153.4, isolated process configuration | `tools/list`, followed by three `tools/call` requests | All three returned fixture acknowledgments |
-| DeepSeek API through the custom reference Host | Model selected query, then operations; Host changed provider-facing definitions and retained original invocation names | Three-turn selection/call sequence completed |
+| Configuration                                     | Observed acquisition/activation                                                                                        | Outcome                                         |
+| ------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------- |
+| Kimi CLI 2.0.2, default                           | `tools/list`, followed by three `tools/call` requests                                                                  | All three returned fixture acknowledgments      |
+| Kimi CLI 2.0.2, deferred enabled                  | `tools/list`; model called built-in `select_tools` with exact names, then three MCP calls                              | Exact-name deferred loading and calls completed |
+| Codex CLI 0.153.4, isolated process configuration | `tools/list`, followed by three `tools/call` requests                                                                  | All three returned fixture acknowledgments      |
+| DeepSeek API through the custom reference Host    | Model selected query, then operations; Host changed provider-facing definitions and retained original invocation names | Three-turn selection/call sequence completed    |
 
 Kimi requested MCP protocol `2025-11-25`; Codex requested `2025-06-18`. Neither CLI
 run invoked draft manifest/describe or experimental group methods. This is an

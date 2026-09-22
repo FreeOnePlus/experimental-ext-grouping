@@ -1,5 +1,8 @@
 # Deterministic grouping: experimental contract and reference
 
+See the [synthetic payload benchmark](BENCHMARK.md) for reproducible narrow,
+dispersed and full-catalog comparisons, including cases where grouping costs more.
+
 This is a discussion artifact, **not an accepted MCP extension**. It layers
 single-level exact group selection on the manifest/describe split in
 [SEP-2636](https://github.com/modelcontextprotocol/modelcontextprotocol/pull/2636),
