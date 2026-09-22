@@ -17,3 +17,5 @@ jobs:
         with:
           node-version: ${{ matrix.node }}
       - run: node --test experiments/deterministic-groups/reference.test.mjs
+      - run: node --test experiments/deterministic-groups/conformance/suite.test.mjs
+      - run: node experiments/deterministic-groups/conformance/run.mjs

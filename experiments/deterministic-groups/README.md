@@ -20,6 +20,11 @@ fixture. Requests and responses cross an in-process JSON serialization boundary.
 Tests record the requests, inspect provider-facing definitions, invoke the
 original names, inject changes, and check recovery.
 
+The [portable check contract](conformance/README.md) adds a JSON fixture, shared
+serialization vectors and an asynchronous adapter interface for other server
+implementations. It separately lists unimplemented integration gates and includes
+negative controls for the test harness itself.
+
 ## Proposed contract
 
 The words below describe this experiment, not requirements on existing MCP hosts.
